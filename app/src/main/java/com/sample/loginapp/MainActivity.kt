@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     startDestination = "user_login_screen"
                 ) {
                     composable("user_login_screen") {
-                        UserLoginScreen(navController = navController)
+                        UserLoginScreen(navController = navController,this@MainActivity)
                     }
                     composable(
                         "user_dashboard_screen/{userName}",

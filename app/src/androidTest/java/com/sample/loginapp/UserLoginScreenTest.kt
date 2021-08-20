@@ -28,7 +28,7 @@ class UserLoginScreenTest {
     fun login_screen_empty_username_and_password() {
         composeTestRule.setContent {
             LoginAppTheme {
-                UserLoginScreen(navController = rememberNavController())
+                UserLoginScreen(navController = rememberNavController(),composeTestRule.activity)
             }
         }
 
@@ -42,7 +42,7 @@ class UserLoginScreenTest {
     fun login_screen_empty_username_only() {
         composeTestRule.setContent {
             LoginAppTheme {
-                UserLoginScreen(navController = rememberNavController())
+                UserLoginScreen(navController = rememberNavController(),composeTestRule.activity)
             }
         }
 
@@ -56,7 +56,7 @@ class UserLoginScreenTest {
     fun login_screen_empty_password_only() {
         composeTestRule.setContent {
             LoginAppTheme {
-                UserLoginScreen(navController = rememberNavController())
+                UserLoginScreen(navController = rememberNavController(),composeTestRule.activity)
             }
         }
 
@@ -70,7 +70,7 @@ class UserLoginScreenTest {
     fun login_screen_non_empty_fields() {
         composeTestRule.setContent {
             LoginAppTheme {
-                UserLoginScreen(navController = rememberNavController())
+                UserLoginScreen(navController = rememberNavController(),composeTestRule.activity)
             }
         }
 

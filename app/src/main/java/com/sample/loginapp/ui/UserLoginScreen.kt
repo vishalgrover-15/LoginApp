@@ -1,5 +1,7 @@
 package com.sample.loginapp.ui
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -14,9 +16,14 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import java.util.regex.Pattern
 
 @Composable
-fun UserLoginScreen(navController: NavController) {
+fun UserLoginScreen(navController: NavController,context:Context) {
+    val userNamepattern = "^[a-zA-Z0-9\\_]{5,40}+\$"
+    val pwdPattern = "^[a-zA-Z0-9_*$@]+\$"
+
+
     Surface(
         color = MaterialTheme.colors.background,
         modifier = Modifier.fillMaxSize()
@@ -37,6 +44,22 @@ fun UserLoginScreen(navController: NavController) {
          * @return true/false
          */
         fun onTextChanged(): Boolean {
+            val userName = usernameState.value
+            val pwd = passwordState.value
+            val pwdPattern = Regex(pwdPattern)
+            val usrPattern = Regex(userNamepattern)
+            val validPwd = pwdPattern.containsMatchIn(pwd)
+            val validUsername = usrPattern.containsMatchIn(userName)
+            if(!validUsername) {
+                Toast.makeText(context, "Enter proper user name", Toast.LENGTH_SHORT).show()
+                return false
+            }
+            if(!validPwd) {
+                Toast.makeText(context, "Password not meeting the criteria", Toast.LENGTH_SHORT).show()
+                return false
+            }
+
+
             return (usernameState.value.isNotEmpty() && passwordState.value.isNotEmpty())
         }
 
